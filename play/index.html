@@ -67,8 +67,10 @@
 
     <script>
         window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+    const videoId = urlParams.get('v'); // 🔍 URL'deki ID'yi yakala
             const downloadUrl = "https://github.com/Volkanoloji/PulsePC/releases";
-            const appProtocol = "pulsepc://play";
+            const appProtocol = videoId ? `pulsepc://play/${videoId}` : "pulsepc://play";
             
             // 🚀 1. Sinyali Gönder (Uygulamayı açmaya çalış)
             window.location.href = appProtocol;
