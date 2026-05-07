@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulsePC Aktarılıyor...</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #00f2ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            border: 2px solid #00f2ff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .loader {
+            border: 4px solid #161b22;
+            border-top: 4px solid #00f2ff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h1 { font-size: 24px; margin-bottom: 10px; }
+        p { color: #8b949e; }
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid #00f2ff;
+            color: #00f2ff;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #00f2ff; color: #000; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loader"></div>
+        <h1>PulsePC Başlatılıyor</h1>
+        <p>Uygulama kontrol ediliyor, lütfen bekleyin...</p>
+        <a id="downloadLink" href="https://github.com/Volkanoloji/PulsePC/releases" class="btn" style="display:none;">
+            Uygulama Açılmadı mı? Manuel İndir
+        </a>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const downloadUrl = "https://github.com/Volkanoloji/PulsePC/releases";
+            const appProtocol = "pulsepc://play";
+            
+            // 🚀 1. Sinyali Gönder (Uygulamayı açmaya çalış)
+            window.location.href = appProtocol;
+
+            // ⏱️ 2. Zamanlayıcı: 3 saniye içinde sayfa hala buradaysa indirmeye git
+            setTimeout(function() {
+                document.getElementById('downloadLink').style.display = 'inline-block';
+                // İstersen otomatik indirme için şu satırı aktif edebilirsin:
+                // window.location.href = downloadUrl;
+            }, 3000);
+        };
+    </script>
+</body>
+</html>
